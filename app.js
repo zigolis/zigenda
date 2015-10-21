@@ -1,12 +1,13 @@
 var express = require('express')
   , load = require('express-load')
+  , serveStatic = require('serve-static')
   , app = express();
 
 app.set('port', (process.env.PORT || 5000));
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
 
-app.use(express.static(__dirname + '/public'));
+app.use(serveStatic(__dirname + '/public'));
 
 load('models')
   .then('controllers')
