@@ -1,0 +1,29 @@
+{
+  "name": "my-contacts",
+  "version": "0.1.0",
+  "authors": [
+    "Gabriel Zigolis <gabriel.zigolis@gmail.com>"
+  ],
+  "description": "ZiGenda - My Contacts",
+  "main": "app.js",
+  "moduleType": [
+    "node"
+  ],
+  "keywords": [
+    "node",
+    "socket",
+    "react",
+    "zigolis"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.3.5"
+  }
+}
