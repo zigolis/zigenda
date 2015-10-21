@@ -1,39 +1,25 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>ZiGenda - MyContacts</title>
-    <link rel="stylesheet" href="components/bootstrap/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/style.css">
-  </head>
+<% include ../partials/header.ejs %>
 
-  <body>
-    <header class="row-fluid text-center">
-      <h1>ZiGenda</h1>
-    </header>
+<header class="row-fluid text-center">
+  <h1>ZiGenda</h1>
+</header>
 
-    <section class="container">
-      <form action="/entrar" method="post" class="form-signin">
-        <input type="text" class="form-control" name="usuario[nome]" placeholder="Inform your name." autofocus>
+<section class="container">
+  <form action="/entrar" method="post" class="form-signin">
+    <input type="text" class="form-control" name="usuario[nome]" placeholder="Inform your name." autofocus>
 
-        <div class="form-group">
-          <input type="email" class="form-control" name="usuario[email]" placeholder="Inform your e-mail.">
-        </div>
+    <div class="form-group">
+      <input type="email" class="form-control" name="usuario[email]" placeholder="Inform your e-mail.">
+    </div>
 
-        <div class="checkbox">
-          <label>
-            <input type="checkbox" value="remember-me"> Remember me
-          </label>
-        </div>
+    <div class="checkbox">
+      <label>
+        <input type="checkbox" value="remember-me"> Remember me
+      </label>
+    </div>
 
-        <button type="submit" class="btn btn-primary btn-block">Entrar</button>
-      </form>
-    </section>
+    <button type="submit" class="btn btn-primary btn-block">Entrar</button>
+  </form>
+</section>
 
-    <footer class="row-fluid text-center">
-      <small>ZiGenda - MyContacts</small>
-    </footer>
-  </body>
-</html>
+<% include ../partials/footer.ejs %>
