@@ -20,6 +20,10 @@
     "ejs": "~2.3.3",
     "express": "~4.13.1",
     "express-load": "^1.1.15",
+    "express-session": "^1.11.3",
     "serve-static": "^1.10.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.7.3"
   }
 }

@@ -1,6 +1,9 @@
 var express = require('express')
   , load = require('express-load')
   , serveStatic = require('serve-static')
+  , bodyParser = require('body-parser')
+  , cookieParser = require('cookie-parser')
+  , expressSession = require('express-session')
   , app = express();
 
 app.set('port', (process.env.PORT || 5000));
@@ -8,6 +11,15 @@ app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
 
 app.use(serveStatic(__dirname + '/public'));
+app.use(cookieParser('ZiGenda'));
+app.use(expressSession({
+  secret: 'ZiGenda',
+  name: 'zigenda.sid',
+  resave: true,
+  saveUninitialized: true
+}));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: true}));
 
 load('models')
   .then('controllers')
