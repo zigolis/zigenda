@@ -1,0 +1,39 @@
+<% include ../partials/header.ejs %>
+
+<header class="row-fluid text-center">
+  <h1><%- contact.nome %></h1>
+</header>
+
+<section class="container show">
+  <form action="/contacts/<%- id %>?_method=DELETE" method="post" class="well form-inline">
+    <table class="table table-striped table-hover">
+      <tbody>
+        <tr>
+          <th>Full Name</th>
+          <td><%- contact.nome %></td>
+        </tr>
+        <tr>
+          <th>E-mail</th>
+          <td><%- contact.email %></td>
+        </tr>
+        <tr>
+          <th>Mobile</th>
+          <td>+55 (21) 9999-9999</td>
+        </tr>
+        <tr>
+          <th>Status</th>
+          <td>Offline</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div>
+      <a href="/contacts" class="btn btn-primary">Back</a>
+      <button type="submit" class="btn btn-danger pull-right">Delete</button>
+      <a href="/contacts/<%- id %>/edit" class="btn btn-info pull-right">Edit</a>
+    </div>
+  </form>
+</section>
+
+<% include ../partials/logout.ejs %>
+<% include ../partials/footer.ejs %>

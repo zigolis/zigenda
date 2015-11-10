@@ -14,7 +14,7 @@ module.exports = function(app) {
       };
 
       var user = req.body.user;
-      user['details'] = [];
+      user['contacts'] = [];
 
       req.session.user = user;
       res.redirect('/contacts');
