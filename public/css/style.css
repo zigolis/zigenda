@@ -1,31 +1,46 @@
 body {
-  background-color: #fff;
-  padding-bottom: 40px;
+  background: #fff;
+  padding-bottom: 36px;
 }
 
-header {
-  background: #f1f1f1;
+header, footer {
+  background: #f9f9f9;
+  border-bottom: 1px solid #eceeef;
+  border-top: 1px solid #eceeef;
   margin-bottom: 30px;
   padding: 10px 0;
+}
+
+footer {
+  bottom: 0;
+  left: 0;
+  margin-bottom: 0;
+  padding: 5px 0;
+  position: fixed;
+  right: 0;
 }
 
 h1 {
   font-size: 50px;
   font-weight: 100;
+  margin: 0;
 }
 
 small {
-  font-weight: 200;
+  font-weight: 100;
 }
 
 .checkbox label {
-  font-weight: 200;
+  font-weight: 100;
 }
 
 .form-signin {
-  max-width: 330px;
-  padding: 15px;
-  margin: 0 auto;
+  margin-left: -150px;
+  margin-top: -100px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 300px;
 }
 
 .form-signin .form-control {
@@ -54,8 +69,8 @@ small {
   margin-top: -1px;
 }
 
-.form-add {
-  margin-bottom: 50px;
+.form-add, .form-show {
+  margin: 50px 0;
 }
 
 .form-add .form-control {

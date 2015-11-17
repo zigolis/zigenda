@@ -1,13 +1,9 @@
 <% include ../partials/header.ejs %>
 
-<header class="row-fluid text-center">
-  <h1>ZiGenda</h1>
-</header>
-
 <section class="container">
   <form action="/contacts" method="post" class="form-add">
-    <input type="text" name="contact[nome]" class="form-control" placeholder="Enter name" autofocus>
-    <input type="text" name="contact[email]" class="form-control" placeholder="Enter e-mail">
+    <input type="text" name="contact[nome]" class="form-control" placeholder="Enter name" autofocus required>
+    <input type="text" name="contact[email]" class="form-control" placeholder="Enter e-mail" required>
     <button type="submit" class="btn btn-primary btn-block">Save</button>
   </form>
 
