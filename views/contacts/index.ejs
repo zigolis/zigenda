@@ -3,7 +3,7 @@
 <section class="container">
   <form action="/contacts" method="post" class="form-add">
     <input type="text" name="contact[nome]" class="form-control" placeholder="Enter name" autofocus required>
-    <input type="text" name="contact[email]" class="form-control" placeholder="Enter e-mail" required>
+    <input type="email" name="contact[email]" class="form-control" placeholder="Enter e-mail" required>
     <button type="submit" class="btn btn-primary btn-block">Save</button>
   </form>
 
@@ -17,13 +17,19 @@
     </thead>
 
     <tbody>
-      <% contacts.forEach(function(contact, index) { %>
+      <% if (contacts.length == 0) { %>
         <tr>
-          <td><%- contact.nome %></td>
-          <td><%- contact.email %></td>
-          <td><a href="contacts/<%- index %>">Detalhes</a></td>
+          <td colspan="3" class="text-center">No contacts </td>
         </tr>
-      <% }) %>
+      <% } else { %>
+        <% contacts.forEach(function(contact, index) { %>
+          <tr>
+            <td><%- contact.nome %></td>
+            <td><%- contact.email %></td>
+            <td><a href="contacts/<%- index %>">Detalhes</a></td>
+          </tr>
+        <% }) %>
+      <% } %>
     </tbody>
   </table>
 </section>
