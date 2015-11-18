@@ -1,0 +1,38 @@
+<% include ../partials/header.ejs %>
+
+<section class="container edit">
+  <form action="/contacts/<%- id %>?_method=PUT" method="post" class="form-edit">
+    <input
+      type="text"
+      name="contact[nome]"
+      value="<%- contact.nome %>"
+      class="form-control"
+      placeholder="Enter name"
+      autofocus required>
+
+    <input
+      type="email"
+      name="contact[email]"
+      value="<%- contact.email %>"
+      class="form-control"
+      placeholder="Enter e-mail"
+      required>
+
+    <input
+      type="tel"
+      name="contact[mobile]"
+      value="<%- contact.mobile %>"
+      class="form-control"
+      placeholder="Enter mobile"
+      required>
+
+    <div>
+      <a href="/contacts/<%- id %>" class="btn btn-secondary">Back</a>
+      <button type="submit" class="btn btn-primary pull-right">Update</a>
+      <button type="reset" class="btn btn-warning pull-right">Undo</button>
+    </div>
+  </form>
+</section>
+
+<% include ../partials/logout.ejs %>
+<% include ../partials/footer.ejs %>

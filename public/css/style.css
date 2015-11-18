@@ -69,14 +69,14 @@ small {
   margin-top: -1px;
 }
 
-.form-add, .form-show {
+.form-add, .form-show, .form-edit {
   margin: 50px 0;
 }
 
-.form-add .form-control {
+.form-add .form-control, .form-edit .form-control {
   margin-bottom: 10px;
 }
 
-.show .btn-info {
-  margin-right: 5px;
+.show .btn-primary, .edit .btn-primary {
+  margin-left: 5px;
 }
