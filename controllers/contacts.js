@@ -43,9 +43,9 @@ module.exports = function(app) {
 
     destroy: function(req, res) {
       var id = req.params.id
-        , user = req.session.user
+        , user = req.session.user;
 
-      user.contacts.splic(id, 1);
+      user.contacts.splice(id, 1);
       res.redirect('/contacts');
     }
   };
