@@ -1,6 +1,10 @@
 module.exports = function(app) {
   var HomeController = {
     index: function(req, res) {
+      if (req.session.user) {
+        res.redirect('/contacts');
+        return;
+      }
       res.render('home/index');
     },
 
@@ -11,7 +15,7 @@ module.exports = function(app) {
       if (!email || !nome) {
         res.redirect('/');
         return;
-      };
+      }
 
       var user = req.body.user;
       user['contacts'] = [];
