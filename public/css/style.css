@@ -20,10 +20,14 @@ footer {
   right: 0;
 }
 
-h1 {
+h1, h2 {
   font-size: 50px;
   font-weight: 100;
   margin: 0;
+}
+
+h2 {
+  font-size: 30px;
 }
 
 small {
@@ -79,4 +83,18 @@ small {
 
 .show .btn-primary, .edit .btn-primary {
   margin-left: 5px;
+}
+
+.error h2 {
+  font-size: 30px;
+  margin-top: 50px;
+}
+
+.error p {
+  font-weight: 200;
+  margin-top: 70px;
+}
+
+.error-msg {
+  color: red;
 }
