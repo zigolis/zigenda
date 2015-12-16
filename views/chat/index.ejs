@@ -1,7 +1,7 @@
 <% include ../partials/header.ejs %>
 <script src="/socket.io/socket.io.js"></script>
 <script>
-  var socket = io('http://localhost:5000');
+  var socket = io(location.origin);
 
   socket.on('send-client', function(msg) {
     document.getElementById('chat').innerHTML += msg;
