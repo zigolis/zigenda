@@ -106,3 +106,16 @@ small {
 .pull-right {
   float: right;
 }
+
+pre {
+  background: #f9f9f9;
+  border: 1px solid #eceeef;
+  border-radius: 5px;
+  font-size: 13px;
+  line-height: 20px;
+  padding: 10px;
+}
+
+pre p {
+  margin: 0;
+}

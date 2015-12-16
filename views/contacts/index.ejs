@@ -27,7 +27,10 @@
           <tr>
             <td><%- contact.nome %></td>
             <td><%- contact.email %></td>
-            <td><a href="contacts/<%- index %>">Detalhes</a></td>
+            <td>
+              <a href="contacts/<%- index %>">Detalhes</a><br>
+              <a href="/chat">Chat</a>
+            </td>
           </tr>
         <% }) %>
       <% } %>
