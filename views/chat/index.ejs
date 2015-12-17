@@ -1,4 +1,5 @@
 <% include ../partials/header.ejs %>
+<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
 <script src="/socket.io/socket.io.js"></script>
 <script>
   var socket = io(location.origin);
@@ -7,27 +8,51 @@
     document.getElementById('chat').innerHTML += msg;
   });
 
+  $(document).keypress(function(e){
+    if (e.which == 13) {
+      send();
+      return e.which != 13;
+    }
+  });
+
   var send = function() {
-    var nome = document.getElementById('nome').value;
-    var msg = document.getElementById('msg').value;
+    var nome = document.getElementById('nome').value
+      , msg = document.getElementById('msg').innerHTML;
 
     socket.emit('send-server', {nome: nome, msg: msg});
+    clean();
+  };
+
+  var clean = function() {
+    document.getElementById('msg').innerHTML = '';
   };
 </script>
 
-<section class="container show chat">
+<section class="container chat">
+  <div>
+    <a href="/contacts" class="btn btn-secondary">Back</a>
+    <a href="/logout" class="btn btn-danger pull-right">Logout</a>
+  </div>
+
   <pre id="chat"></pre>
 
-  <form class="form-add">
+  <form class="form-add" onsubmit="send(); return false;">
     <input type="hidden" id="nome" value="<%- user.nome %>">
-    <textarea id="msg" class="form-control"></textarea>
 
-    <div>
-      <a href="/contacts" class="btn btn-secondary">Back</a>
-      <button type="button" onclick="send()" class="btn btn-primary pull-right">Send</button>
+    <div
+      contenteditable="true"
+      id="msg"
+      class="form-control container type-area"
+      placeholder="Enter a message">
     </div>
+
+    <button
+      type="button"
+      onclick="send()"
+      class="btn btn-primary pull-right">
+        Send
+    </button>
   </form>
 </section>
 
-<% include ../partials/logout.ejs %>
 <% include ../partials/footer.ejs %>
