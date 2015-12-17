@@ -107,6 +107,10 @@ small {
   float: right;
 }
 
+.chat {
+  position: relative;
+}
+
 pre {
   background: #f9f9f9;
   border: 1px solid #eceeef;
@@ -140,8 +144,8 @@ pre p {
 }
 
 .chat .btn-primary {
-  bottom: 45px;
-  position: fixed;
-  right: 275px;
+  bottom: 9px;
+  position: absolute;
+  right: -10px;
   z-index: 3;
 }
