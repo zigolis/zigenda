@@ -8,6 +8,10 @@
     document.getElementById('chat').innerHTML += msg;
   });
 
+  $(function(){
+    $('#msg').focus();
+  });
+
   $(document).keypress(function(e){
     if (e.which == 13) {
       send();
@@ -15,7 +19,7 @@
     }
   });
 
-  var send = function() {
+  var send = function send() {
     var nome = document.getElementById('nome').value
       , msg = document.getElementById('msg').innerHTML;
 
@@ -23,7 +27,7 @@
     clean();
   };
 
-  var clean = function() {
+  var clean = function clean() {
     document.getElementById('msg').innerHTML = '';
   };
 </script>
@@ -43,7 +47,7 @@
       contenteditable="true"
       id="msg"
       class="form-control container type-area"
-      placeholder="Enter a message">
+      data-placeholder="Enter a message">
     </div>
 
     <!-- <button
