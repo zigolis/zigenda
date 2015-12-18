@@ -34,15 +34,6 @@ load('models')
 load('sockets')
   .into(io);
 
-io.sockets.on('connection', function(client) {
-  client.on('send-server', function(data) {
-    var msg = '<p><b>' + data.nome + ': </b>' + data.msg + '</p>';
-
-    client.emit('send-client', msg);
-    client.broadcast.emit('send-client', msg);
-  });
-});
-
 app.use(error.notFound);
 app.use(error.serverError);
 
