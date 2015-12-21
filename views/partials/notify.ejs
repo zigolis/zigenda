@@ -1,0 +1,10 @@
+<script src="/socket.io/socket.io.js"></script>
+<script>
+  var socket = io(location.origin);
+
+  socket.on('new-message', function(data) {
+    console.log(data);
+    var chat = document.getElementById('chat_' + data.email);
+    chat.href = '/chat/?room=' + data.room;
+  });
+</script>

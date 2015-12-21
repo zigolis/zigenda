@@ -1,15 +1,35 @@
 module.exports = function(io) {
-  var sockets = io.sockets;
+  var crypto = require('crypto')
+    , sockets = io.sockets;
 
   sockets.on('connection', function(client) {
     var session = client.handshake.session
       , user = session.user;
 
-    client.on('send-server', function(msg) {
-      var msg = '<p><b>' + user.nome + ': </b>' + msg + '</p>';
+    client.on('join', function(room) {
+      if (!room) {
+        var timestamp = new Date().toString()
+          , md5 = crypto.createHash('md5');
 
-      client.emit('send-client', msg);
-      client.broadcast.emit('send-client', msg);
+        room = md5.update(timestamp).digest('hex');
+      }
+
+      session.room = room;
+      client.join(room);
+    });
+
+    client.on('disconnect', function() {
+      client.leave(session.room);
+    });
+
+    client.on('send-server', function(msg) {
+      var room = session.room
+        , data = {email: user.email, room: room};
+
+      msg = '<p><b>' + user.nome + ': </b>' + msg + '</p>';
+
+      client.broadcast.emit('new-message', data);
+      sockets.in(room).emit('send-client', msg);
     });
   });
 }
