@@ -12,24 +12,23 @@
     $('#msg').focus();
   });
 
+  var clean = function clean() {
+    document.getElementById('msg').innerHTML = '';
+  };
+
+  var send = function send() {
+    var msg = document.getElementById('msg').innerHTML;
+
+    socket.emit('send-server', msg);
+    clean();
+  };
+
   $(document).keypress(function(e){
     if (e.which == 13) {
       send();
       return e.which != 13;
     }
   });
-
-  var send = function send() {
-    var nome = document.getElementById('nome').value
-      , msg = document.getElementById('msg').innerHTML;
-
-    socket.emit('send-server', {nome: nome, msg: msg});
-    clean();
-  };
-
-  var clean = function clean() {
-    document.getElementById('msg').innerHTML = '';
-  };
 </script>
 
 <section class="container chat">
@@ -41,21 +40,12 @@
   <pre id="chat"></pre>
 
   <form class="form-add" onsubmit="send(); return false;">
-    <input type="hidden" id="nome" value="<%- user.nome %>">
-
     <div
       contenteditable="true"
       id="msg"
       class="form-control container type-area"
       data-placeholder="Enter a message">
     </div>
-
-    <!-- <button
-      type="button"
-      onclick="send()"
-      class="btn btn-primary pull-right">
-        Send
-    </button> -->
   </form>
 </section>
 
