@@ -2,8 +2,27 @@
 <script>
   var socket = io(location.origin);
 
+  var notify = function(data) {
+    var id = 'notify_' + data.email
+      , notify = document.getElementById(id);
+
+    if (notify) {
+      console.log(data);
+      notify.innerText = data.msg;
+    }
+  };
+
+  socket.on('notify-onlines', function(email) {
+    notify({email: email, msg: 'Online'});
+  });
+
+  socket.on('notify-offlines', function(email) {
+    notify({email: email, msg: 'Offline'});
+  });
+
   socket.on('new-message', function(data) {
-    console.log(data);
+    notify({email: data.email, msg: 'Message'});
+
     var chat = document.getElementById('chat_' + data.email);
     chat.href = '/chat/?room=' + data.room;
   });
