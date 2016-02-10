@@ -44,7 +44,7 @@ module.exports = function(app) {
       var _id = req.session.user._id;
 
       User.findById(_id, function(erro, user) {
-        var contactID = req.params.user;
+        var contactID = req.params.id;
         var contact = user.contacts.id(contactID);
         var result = {contact: contact};
 
