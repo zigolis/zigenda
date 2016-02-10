@@ -50,10 +50,12 @@
             <td><%- contact.nome %></td>
             <td><%- contact.email %></td>
             <td>
-              <span id="notify_<%- contact.email %>">Offline</span>
+              <span id="notify_<%- contact.email %>" class="label">
+                Offline
+              </span>
             </td>
             <td>
-              <a href="contacts/<%- index %>">Detalhes</a><br>
+              <a href="contacts/<%- contact._id %>">Details</a><br>
               <a href="/chat" id="chat_<%- contact.email %>">Chat</a>
             </td>
           </tr>

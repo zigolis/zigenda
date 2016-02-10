@@ -2,12 +2,12 @@ module.exports = function(app) {
   var Schema = require('mongoose').Schema;
 
   var contact = Schema({
-    name: String,
+    nome: String,
     email: String
   });
 
   var user = Schema({
-    name: {type: String, required: true},
+    nome: {type: String, required: true},
     email: {type: String, required: true, index: {unique: true}},
     contacts: [contact]
   });

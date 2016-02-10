@@ -1,52 +1,84 @@
 module.exports = function(app) {
+  var User = app.models.user;
+
   var ContactsController = {
     index: function(req, res) {
-      var user = req.session.user
-        , contacts = user.contacts
-        , params = {user: user, contacts: contacts};
+      var _id = req.session.user._id;
 
-      res.render('contacts/index', params);
+      User.findById(_id, function(erro, user) {
+        var contacts = user.contacts;
+        var result = {contacts: contacts};
+
+        res.render('contacts/index', result);
+      });
     },
 
     create: function(req, res) {
-      var contact = req.body.contact
-        , user = req.session.user;
+      var _id = req.session.user._id;
 
-      user.contacts.push(contact);
-      res.redirect('/contacts')
+      User.findById(_id, function(erro, user) {
+        var contact = req.body.contact;
+        var contacts = user.contacts;
+
+        contacts.push(contact);
+
+        user.save(function() {
+          res.redirect('/contacts');
+        });
+      });
     },
 
     show: function(req, res) {
-      var id = req.params.id
-        , contact = req.session.user.contacts[id]
-        , params = {contact: contact, id: id};
+      var _id = req.session.user._id;
 
-      res.render('contacts/show', params);
+      User.findById(_id, function(erro, user) {
+        var contactID = req.params.id;
+        var contact = user.contacts.id(contactID);
+        var result = {contact: contact};
+
+        res.render('contacts/show', result);
+      });
     },
 
     edit: function(req, res) {
-      var id = req.params.id
-        , user = req.session.user
-        , contact = user.contacts[id]
-        , params = {user: user, contact: contact, id: id}
+      var _id = req.session.user._id;
 
-      res.render('contacts/edit', params);
+      User.findById(_id, function(erro, user) {
+        var contactID = req.params.user;
+        var contact = user.contacts.id(contactID);
+        var result = {contact: contact};
+
+        res.render('contacts/edit', result);
+      });
     },
 
     update: function(req, res) {
-      var contact = req.body.contact
-        , user = req.session.user;
+      var _id = req.session.user._id;
 
-      user.contacts[req.params.id] = contact;
-      res.redirect('/contacts');
+      User.findById(_id, function(erro, user) {
+        var contactID = req.params.id;
+        var contact = user.contacts.id(contactID);
+
+        contact.nome = req.body.contact.nome;
+        contact.email = req.body.contact.email;
+
+        user.save(function() {
+          res.redirect('/contacts');
+        });
+      });
     },
 
     destroy: function(req, res) {
-      var id = req.params.id
-        , user = req.session.user;
+      var _id = req.session.user._id;
 
-      user.contacts.splice(id, 1);
-      res.redirect('/contacts');
+      User.findById(_id, function(erro, user) {
+        var contactID = req.params.id;
+
+        user.contacts.id(contactID).remove();
+        user.save(function() {
+          res.redirect('/contacts');
+        });
+      });
     }
   };
 

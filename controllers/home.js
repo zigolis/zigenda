@@ -1,4 +1,6 @@
 module.exports = function(app) {
+  var User = app.models.user;
+
   var HomeController = {
     index: function(req, res) {
       if (req.session.user) {
@@ -9,19 +11,31 @@ module.exports = function(app) {
     },
 
     login: function(req, res) {
-      var email = req.body.user.email
-        , nome = req.body.user.nome;
+      var query = {email: req.body.user.email};
 
-      if (!email || !nome) {
-        res.redirect('/');
-        return;
-      }
+      User
+        .findOne(query)
+        .select('name email')
+        .exec(function(erro, user) {
 
-      var user = req.body.user;
-      user['contacts'] = [];
+          if (user) {
+            req.session.user = user;
+            res.redirect('/contacts')
+          }
+          else {
+            var user = req.body.user;
 
-      req.session.user = user;
-      res.redirect('/contacts');
+            User.create(user, function(erro, user) {
+              if (erro) {
+                res.redirect('/');
+              }
+              else {
+                req.session.user = user;
+                res.redirect('/contacts');
+              }
+            });
+          }
+        });
     },
 
     logout: function(req, res) {
