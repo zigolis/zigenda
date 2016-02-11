@@ -12,16 +12,16 @@ module.exports = function(app) {
 
     login: function(req, res) {
       var query = {email: req.body.user.email};
-      console.log(req.body.user.email);
+      console.log(req.body.user);
 
       User
         .findOne(query)
-        .select('name email')
+        .select('nome email')
         .exec(function(erro, user) {
 
           if (user) {
             req.session.user = user;
-            res.redirect('/contacts')
+            res.redirect('/contacts');
           }
           else {
             var user = req.body.user;
