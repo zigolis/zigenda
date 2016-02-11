@@ -17,7 +17,7 @@ var express = require('express')
   , mongoose = require('mongoose');
 
 // global.db = mongoose.connect('mongodb://localhost:27017/zigenda')
-global.db = mongoose.connect('mongodb://heroku_h40rh00s:heroku_h40rh00s@ds035385.mongolab.com:35385/heroku_h40rh00s')
+global.db = mongoose.connect('mongodb://zigolis:zigolis123@ds035385.mongolab.com:35385/heroku_h40rh00s')
 
 app.set('port', (process.env.PORT || 5000));
 app.set('views', __dirname + '/views');
