@@ -12,6 +12,7 @@ module.exports = function(app) {
 
     login: function(req, res) {
       var query = {email: req.body.user.email};
+      console.log(req.body.user.email);
 
       User
         .findOne(query)
